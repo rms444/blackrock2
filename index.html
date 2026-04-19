@@ -1,163 +1,1035 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlackRock Events</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlackRock Events | Luxury Event Planning</title>
+  <meta name="description" content="Luxury event planning for unforgettable weddings, galas, corporate experiences, and destination celebrations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --panel: rgba(255,255,255,0.06);
+      --panel-2: rgba(255,255,255,0.09);
+      --text: #f7f4ee;
+      --muted: #d4ccbf;
+      --line: rgba(255,255,255,0.14);
+      --gold: #c9a96a;
+      --gold-soft: rgba(201, 169, 106, 0.18);
+      --shadow: 0 20px 60px rgba(0,0,0,0.38);
+      --radius: 24px;
+      --max: 1320px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #0a0a0a;
-    color: #fff;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(201,169,106,0.10), transparent 30%),
+        radial-gradient(circle at right center, rgba(255,255,255,0.06), transparent 18%),
+        radial-gradient(circle at bottom center, rgba(201,169,106,0.08), transparent 24%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-h1,h2,h3 {
-    font-family: 'Playfair Display', serif;
-    letter-spacing: 1px;
-}
+    img { display: block; width: 100%; }
+    a { color: inherit; text-decoration: none; }
 
-.nav {
-    position: fixed;
-    width: 100%;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    z-index: 10;
-}
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-.nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 14px;
-}
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.26));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
 
-.hero {
-    height: 100vh;
-    background: url('https://images.unsplash.com/photo-1505236858219-8359eb29e329') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 24px;
+    }
 
-.hero h1 {
-    font-size: 60px;
-    max-width: 800px;
-}
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
 
-.section {
-    padding: 100px 60px;
-    text-align: center;
-}
+    .brand .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
 
-.section.dark {
-    background: #111;
-}
+    .brand .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+    }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
 
-.card {
-    position: relative;
-    height: 400px;
-    overflow: hidden;
-}
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.86);
+    }
 
-.card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    .nav-links a:hover { color: #fff; }
 
-.card h3 {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    font-size: 22px;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
 
-.testimonial {
-    max-width: 700px;
-    margin: auto;
-    font-size: 20px;
-    opacity: 0.8;
-}
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.12);
+    }
 
-.footer {
-    padding: 60px;
-    text-align: center;
-    background: #000;
-}
-</style>
+    .btn.gold {
+      background: linear-gradient(135deg, #d8bb82, #b88d46);
+      color: #101010;
+      border: none;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(201,169,106,0.26);
+    }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: end;
+      padding-top: 120px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.82)),
+        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80') center center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.62), rgba(0,0,0,0.18) 52%, rgba(0,0,0,0.50));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+      padding: 0 0 78px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: end;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+    }
+
+    .kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #f6e7c2;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(56px, 8vw, 108px);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 24px 0 0;
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(255,255,255,0.86);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .hero-card {
+      justify-self: end;
+      max-width: 360px;
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-card .small {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #f3ddab;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card h3 {
+      margin: 0 0 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      line-height: 1;
+    }
+
+    .hero-card p {
+      margin: 0 0 18px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.82);
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 92px 0;
+    }
+
+    .section-head {
+      max-width: 800px;
+      margin-bottom: 36px;
+    }
+
+    .section-head .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 5vw, 72px);
+      line-height: 0.98;
+      font-weight: 600;
+    }
+
+    .section-head p {
+      margin: 18px 0 0;
+      max-width: 760px;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .stat {
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .mosaic {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .mosaic-left,
+    .mosaic-right {
+      display: grid;
+      gap: 22px;
+    }
+
+    .mosaic-left { grid-template-rows: 1.15fr 0.85fr; }
+    .mosaic-right { grid-template-rows: 0.85fr 1.15fr; }
+
+    .photo-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 340px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #111;
+    }
+
+    .photo-card img {
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.7s ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.60));
+    }
+
+    .caption {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 18px;
+      z-index: 1;
+    }
+
+    .caption .type {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: #f7deb0;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+    }
+
+    .caption h3 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 0.98;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service {
+      padding: 28px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.09);
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      filter: blur(10px);
+    }
+
+    .service .num {
+      color: #f0d59f;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .service h3 {
+      margin: 0 0 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      line-height: 1;
+    }
+
+    .service p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 32ch;
+    }
+
+    .quote-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .quote-photo,
+    .quote-card {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .quote-photo img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .quote-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 84px;
+      line-height: 0.7;
+      color: #f3ddab;
+      margin-bottom: 10px;
+    }
+
+    blockquote {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+    }
+
+    .quote-card p {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-grid .shot {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      min-height: 260px;
+    }
+
+    .gallery-grid .shot img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-grid .shot:hover img { transform: scale(1.08); }
+
+    .press-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .press-item {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      padding: 24px 18px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.82);
+      font-size: 13px;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-copy,
+    .contact-box {
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .contact-copy {
+      position: relative;
+      min-height: 720px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.75)),
+        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat;
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+
+    .contact-copy .eyebrow {
+      color: #f3ddab;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      margin-bottom: 12px;
+    }
+
+    .contact-copy h2 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 0.96;
+    }
+
+    .contact-copy p {
+      margin: 16px 0 0;
+      max-width: 34ch;
+      color: rgba(255,255,255,0.84);
+      font-size: 16px;
+    }
+
+    .contact-box {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      padding: 34px;
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-box h3 {
+      margin: 0 0 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .contact-box .sub {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .field,
+    .full {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #efd7a8;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      border-radius: 18px;
+      padding: 15px 16px;
+      font: inherit;
+      outline: none;
+      transition: 0.2s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    select {
+      background-image:
+        linear-gradient(45deg, transparent 50%, #efd7a8 50%),
+        linear-gradient(135deg, #efd7a8 50%, transparent 50%);
+      background-position:
+        calc(100% - 22px) calc(50% - 3px),
+        calc(100% - 14px) calc(50% - 3px);
+      background-size: 8px 8px, 8px 8px;
+      background-repeat: no-repeat;
+      padding-right: 44px;
+    }
+
+    select option {
+      background: #111;
+      color: #fff;
+    }
+
+    input::placeholder,
+    textarea::placeholder { color: rgba(255,255,255,0.42); }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(201,169,106,0.66);
+      box-shadow: 0 0 0 4px rgba(201,169,106,0.12);
+      background: rgba(255,255,255,0.08);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .foot-note {
+      margin-top: 16px;
+      color: rgba(255,255,255,0.56);
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 30px 0 70px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.68);
+      font-size: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) {
+      .hero-content,
+      .mosaic,
+      .quote-wrap,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card { justify-self: start; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .press-strip { grid-template-columns: repeat(3, 1fr); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 14px 0;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 12px;
+        justify-content: flex-end;
+      }
+
+      .nav-links a:not(.btn) { display: none; }
+      .brand .name { font-size: 28px; }
+      .hero { min-height: 92vh; }
+      .hero-content { padding-bottom: 44px; }
+      section { padding: 72px 0; }
+      .services-grid,
+      .gallery-grid,
+      .press-strip,
+      .stats,
+      .form-grid { grid-template-columns: 1fr; }
+      .contact-copy { min-height: 380px; }
+      .contact-box { padding: 24px; }
+      .container { width: min(calc(100% - 24px), var(--max)); }
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="nav">
-    <div>BLACKROCK EVENTS</div>
-    <div>
-        <a href="#">Services</a>
-        <a href="#">Portfolio</a>
-        <a href="#">Contact</a>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <span class="eyebrow">Luxury Event Design</span>
+        <span class="name">BlackRock Events</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#experience">Experience</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn">Inquire</a>
+      </nav>
     </div>
-</div>
+  </header>
 
-<div class="hero">
-    <h1>Where Every Event Becomes an Experience</h1>
-</div>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-copy reveal visible">
+          <span class="kicker">Private clients, destination celebrations, and statement-making galas</span>
+          <h1>We create the kind of events people talk about for years.</h1>
+          <p>From candlelit weddings under oceans of florals to grand corporate experiences with cinematic staging, every detail is built to feel rare, lavish, and completely unforgettable.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn gold">Start Your Event</a>
+            <a href="#gallery" class="btn">View the Atmosphere</a>
+          </div>
+        </div>
 
-<div class="section">
-    <h2>We Design Unforgettable Experiences</h2>
-    <p>From private celebrations to global luxury events, we craft immersive environments tailored to those who expect more.</p>
-</div>
+        <aside class="hero-card reveal visible">
+          <div class="small">Elevated planning</div>
+          <h3>Designed for clients who want more than beautiful.</h3>
+          <p>We blend storytelling, architecture, production, hospitality, lighting, entertainment, and design into one seamless luxury experience.</p>
+          <a href="#services" class="btn gold">Explore Services</a>
+        </aside>
+      </div>
+    </section>
 
-<div class="section dark">
-    <h2>What We Do</h2>
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Our Promise</span>
+          <h2>Extravagant in scale, precise in every detail.</h2>
+          <p>Your event should feel effortless to guests and unforgettable in memory. We handle the vision, design language, vendor curation, guest journey, timing, staging, and execution so the experience feels polished from first impression to final toast.</p>
+        </div>
 
-    <div class="grid">
+        <div class="stats reveal">
+          <div class="stat"><strong>Luxury</strong><span>Private celebrations</span></div>
+          <div class="stat"><strong>Global</strong><span>Destination planning</span></div>
+          <div class="stat"><strong>White-Glove</strong><span>Client experience</span></div>
+          <div class="stat"><strong>Bespoke</strong><span>Every detail custom</span></div>
+        </div>
+      </div>
+    </section>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed">
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Signature Events</span>
+          <h2>For weddings, private celebrations, galas, and unforgettable brand experiences.</h2>
+          <p>This section highlights event types through image-led categories and short emotional copy designed to feel high-end and immersive. </p>
+        </div>
+
+        <div class="mosaic">
+          <div class="mosaic-left reveal">
+            <article class="photo-card">
+              <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1400&q=80" alt="Luxury gala with dramatic florals and lighting" />
+              <div class="caption">
+                <span class="type">Galas & Nonprofit</span>
+                <h3>Ballrooms transformed into cinematic worlds.</h3>
+              </div>
+            </article>
+            <article class="photo-card">
+              <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80" alt="Elegant wedding reception with lush flowers" />
+              <div class="caption">
+                <span class="type">Weddings</span>
+                <h3>Grand floral romance, layered with modern polish.</h3>
+              </div>
+            </article>
+          </div>
+          <div class="mosaic-right reveal">
+            <article class="photo-card">
+              <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80" alt="Luxury corporate event with immersive stage design" />
+              <div class="caption">
+                <span class="type">Corporate</span>
+                <h3>Brand experiences that feel powerful and elegant.</h3>
+              </div>
+            </article>
+            <article class="photo-card">
+              <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1400&q=80" alt="Destination dinner event with long tables and evening ambiance" />
+              <div class="caption">
+                <span class="type">Destination Events</span>
+                <h3>Travel-worthy celebrations in breathtaking settings.</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">What We Do</span>
+          <h2>Full-service event production for the most extravagant visions.</h2>
+          <p>This section uses clear category-led service storytelling to keep the offer premium, structured, and easy to understand. </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service reveal">
+            <div class="num">01</div>
+            <h3>Private Celebrations</h3>
+            <p>Birthday weekends, anniversary dinners, estate parties, and once-in-a-lifetime celebrations with world-class design and seamless hosting.</p>
+          </article>
+          <article class="service reveal">
+            <div class="num">02</div>
             <h3>Luxury Weddings</h3>
+            <p>Multi-day wedding experiences with extraordinary floral installations, elevated guest flow, premium entertainment, and refined production.</p>
+          </article>
+          <article class="service reveal">
+            <div class="num">03</div>
+            <h3>Corporate Prestige</h3>
+            <p>Investor dinners, executive retreats, gala fundraisers, launches, and branded environments that balance impact with sophistication.</p>
+          </article>
+          <article class="service reveal">
+            <div class="num">04</div>
+            <h3>Destination Planning</h3>
+            <p>Venue scouting, travel-aware logistics, curated hospitality, local vendor management, and unforgettable settings across the globe.</p>
+          </article>
+          <article class="service reveal">
+            <div class="num">05</div>
+            <h3>Design Direction</h3>
+            <p>Concept development, visual identity, tablescape language, lighting mood, floral art direction, and spatial storytelling from the ground up.</p>
+          </article>
+          <article class="service reveal">
+            <div class="num">06</div>
+            <h3>White-Glove Coordination</h3>
+            <p>The timelines, run-of-show, guest touchpoints, cueing, and behind-the-scenes precision that make an extravagant event feel effortless.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="quote-wrap">
+          <div class="quote-photo reveal">
+            <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1400&q=80" alt="Luxury event reception with dramatic ambiance" />
+          </div>
+          <div class="quote-card reveal">
+            <div class="quote-mark">“</div>
+            <blockquote>The room looked unreal. Every detail felt expensive, effortless, and bigger than what we even imagined.</blockquote>
+            <p>Private Client</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Atmosphere</span>
+          <h2>A richer gallery, because luxury is visual first.</h2>
+          <p>This section leans heavily on large imagery to sell atmosphere and prestige, with a dense visual gallery to reinforce a luxury feel. </p>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329">
-            <h3>Private Events</h3>
+        <div class="gallery-grid">
+          <div class="shot reveal"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80" alt="Elegant floral dinner setup" /></div>
+          <div class="shot reveal"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80" alt="Luxury wedding floral ceiling design" /></div>
+          <div class="shot reveal"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80" alt="Long table luxury event dining" /></div>
+          <div class="shot reveal"><img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=1200&q=80" alt="Extravagant reception with chandeliers" /></div>
+          <div class="shot reveal"><img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80" alt="Premium party atmosphere with dramatic lighting" /></div>
+          <div class="shot reveal"><img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1200&q=80" alt="Luxury event table styling" /></div>
+          <div class="shot reveal"><img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80" alt="Corporate luxury event with stage lighting" /></div>
+          <div class="shot reveal"><img src="https://images.unsplash.com/photo-1516557070061-c3d1653fa646?auto=format&fit=crop&w=1200&q=80" alt="Destination dinner under lights" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="as-seen">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">As Seen On</span>
+          <h2>Recognized across leading luxury and lifestyle publications.</h2>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30">
-            <h3>Corporate Experiences</h3>
+        <div class="press-strip">
+          <div class="press-item reveal">VOGUE</div>
+          <div class="press-item reveal">FORBES</div>
+          <div class="press-item reveal">TOWN & COUNTRY</div>
+          <div class="press-item reveal">HARPER'S BAZAAR</div>
+          <div class="press-item reveal">MODERN LUXURY</div>
         </div>
+      </div>
+    </section>
 
+    <section id="contact">
+      <div class="container">
+        <div class="contact-wrap">
+          <div class="contact-copy reveal">
+            <div>
+              <div class="eyebrow">Plan your next event with us</div>
+              <h2>Tell us what you want to create.</h2>
+              <p>Share the date, location, guest count, and vision. We will follow up with a tailored consultation for your event.</p>
+            </div>
+          </div>
+
+          <div class="contact-box reveal">
+            <h3>Contact Us</h3>
+            <p class="sub">Private inquiries only. Share your vision and our team will follow up with the next steps.</p>
+
+            <form action="#" method="post">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Full Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your full name" required>
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                </div>
+                <div class="field">
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" placeholder="(555) 555-5555">
+                </div>
+                <div class="field">
+                  <label for="event-type">Event Type</label>
+                  <select id="event-type" name="event_type">
+                    <option value="">Select one</option>
+                    <option>Wedding</option>
+                    <option>Private Celebration</option>
+                    <option>Corporate Event</option>
+                    <option>Nonprofit Gala</option>
+                    <option>Destination Event</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="date">Event Date</label>
+                  <input id="date" name="event_date" type="date">
+                </div>
+                <div class="field">
+                  <label for="guests">Guest Count</label>
+                  <input id="guests" name="guest_count" type="number" min="1" placeholder="Approximate guest count">
+                </div>
+                <div class="full">
+                  <label for="location">Location or Venue</label>
+                  <input id="location" name="location" type="text" placeholder="City, venue, or destination">
+                </div>
+                <div class="full">
+                  <label for="budget">Estimated Budget</label>
+                  <select id="budget" name="budget">
+                    <option value="">Select a range</option>
+                    <option>$10,000 to $25,000</option>
+                    <option>$25,000 to $50,000</option>
+                    <option>$50,000 to $100,000</option>
+                    <option>$100,000 to $250,000</option>
+                    <option>$250,000+</option>
+                  </select>
+                </div>
+                <div class="full">
+                  <label for="vision">Tell Us About Your Vision</label>
+                  <textarea id="vision" name="vision" placeholder="Describe the atmosphere, style, priorities, and what would make this event unforgettable."></textarea>
+                </div>
+                <div class="full">
+                  <button class="btn gold" type="submit">Submit Inquiry</button>
+                </div>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-box">
+      <div>© 2026 BlackRock Events. All rights reserved.</div>
+      <div>Luxury event planning, destination celebrations, corporate experiences.</div>
     </div>
-</div>
+  </footer>
 
-<div class="section">
-    <h2>Our Work Speaks</h2>
-    <p class="testimonial">
-        “Every detail was flawless. The experience felt effortless yet unforgettable.”
-    </p>
-</div>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.14 });
 
-<div class="section dark">
-    <h2>Let’s Create Something Exceptional</h2>
-    <p>Private consultations available for select clients.</p>
-</div>
-
-<div class="footer">
-    <p>© 2026 BlackRock Events</p>
-</div>
-
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
